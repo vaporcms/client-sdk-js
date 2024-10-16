@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "NodeNext",
+    "target": "ES2022",
+    "outDir": "dist", // Output directory
+    "rootDir": "src", // Ensure source files are only from "src" directory
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "declaration": true,
+    "noEmit": false
+  },
+  "include": ["src/**/*"], // Include all files in src
+  "exclude": ["node_modules", "dist"] // Exclude dist and node_modules
+}
