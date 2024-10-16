@@ -10,7 +10,7 @@ import type {
 } from "./types.js";
 import fetch from "node-fetch";
 
-export default class V0Client {
+export class V0Client {
   private auth: string;
   private blogId: string;
   private domain: string;

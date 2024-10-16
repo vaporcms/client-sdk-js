@@ -4,8 +4,8 @@
   "description": "",
   "private": false,
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/types.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/types.d.ts",
   "scripts": {
     "release:patch": "yarn version --patch && git push origin main --follow-tags",
     "release:minor": "yarn version --minor && git push origin main --follow-tags",
