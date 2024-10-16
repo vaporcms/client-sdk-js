@@ -6,6 +6,9 @@
   "main": "dist/index.js",
   "types": "dist/types.d.ts",
   "scripts": {
+    "release:patch": "pnpm version patch && git push origin main --follow-tags",
+    "release:minor": "pnpm version minor && git push origin main --follow-tags",
+    "release:major": "pnpm version major && git push origin main --follow-tags",
     "start": "tsc && node dist/index.js",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
