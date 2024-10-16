@@ -5,7 +5,6 @@
   "private": false,
   "type": "module",
   "main": "./dist/index.js",
-  "module": "/dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "release:patch": "yarn version --patch && git push origin main --follow-tags",
