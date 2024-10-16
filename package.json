@@ -2,6 +2,7 @@
   "name": "@vaporcms/client-sdk-js",
   "version": "1.5.0",
   "description": "",
+  "private": false,
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/types.d.ts",
@@ -12,6 +13,9 @@
     "start": "tsc && node dist/index.js",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "vaporcms",
