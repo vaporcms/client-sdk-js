@@ -10,6 +10,17 @@ import type {
 } from "./types.js";
 import fetch from "node-fetch";
 
+class ApiError extends Error {
+  public code: string;
+  public status: number;
+
+  constructor(message: string, code: string, status: number) {
+    super(message);
+    this.code = code;
+    this.status = status;
+  }
+}
+
 export class V0Client {
   private auth: string;
   private blogId: string;
@@ -58,22 +69,40 @@ export class V0Client {
         method: "GET",
         headers,
       });
+
       if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(
-          `API call failed with status ${response.status}: ${errorText}`
+        const errorJson: any = await response.json();
+        const errorMessage = errorJson?.error?.message || "Unknown error";
+        const errorCode = errorJson?.error?.code || "UNKNOWN_ERROR";
+        throw new ApiError(
+          `API call failed: ${errorMessage}`,
+          errorCode,
+          response.status
         );
       }
 
       const data = await response.json();
       return { ok: true, data: data };
     } catch (error) {
-      if (error instanceof Error) {
-        return { ok: false, error: error.message };
+      if (error instanceof ApiError) {
+        return {
+          ok: false,
+          error: {
+            message: error.message,
+            status: error.status,
+          },
+        };
+      } else if (error instanceof Error) {
+        return { ok: false, error: error.message, status: 500 };
       }
 
-      console.error(error);
-      return { ok: false, error: "Something went wrong." };
+      return {
+        ok: false,
+        error: {
+          message: `An unexpected issue occurred while trying to access ${url}.`,
+          stats: 500,
+        },
+      };
     }
   }
 

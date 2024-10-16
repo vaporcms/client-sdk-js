@@ -139,7 +139,14 @@ export type Category = {
 
 export type ApiResult<T> =
   | { ok: true; data: T; error?: never }
-  | { ok: false; data?: never; error: string };
+  | {
+      ok: false;
+      data?: never;
+      error: {
+        message: string;
+        status: number;
+      };
+    };
 
 export type ArticleBySlugInput = {
   slug: string;
