@@ -52,11 +52,9 @@ export type ArticleList = Array<{
   >;
 }>;
 
-export type ApiResult<T> = {
-  ok: boolean;
-  data?: T;
-  error?: string;
-};
+export type ApiResult<T> =
+  | { ok: true; data: T; error?: never }
+  | { ok: false; data?: never; error: string };
 
 // INPUTS
 export type ArticleBySlugInput = {

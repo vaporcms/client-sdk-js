@@ -93,7 +93,7 @@ export class V0Client {
     list: (): Promise<CategoryListOutput> => this.request("categories"),
   };
 
-  public readonly article = {
+  public readonly articles = {
     get: (args: ArticleBySlugInput): Promise<LocalizedArticleOutput> =>
       this.request(`articles/${args.slug}`, args),
 
