@@ -6,6 +6,10 @@
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "release:patch": "yarn version --patch && git push origin main --follow-tags",
     "release:minor": "yarn version --minor && git push origin main --follow-tags",
