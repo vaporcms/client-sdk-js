@@ -5,6 +5,7 @@
 
 # Optional npm cache directory
 .npm
+.npmrc
 
 # Output of 'npm pack', 'npm run build', etc.
 dist
@@ -38,10 +39,6 @@ Thumbs.db
 .env.local
 .env.*.local
 
-# Lock files
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
 
 # Optional coverage folder
 coverage
