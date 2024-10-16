@@ -15,7 +15,7 @@
     "release:minor": "pnpm version minor && git push origin main --follow-tags",
     "release:major": "pnpm version major && git push origin main --follow-tags",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "pnpm build && node --env-file=.env --test ./dist/test.js"
   },
   "publishConfig": {
     "access": "public"

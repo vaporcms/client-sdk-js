@@ -6,7 +6,7 @@ import type {
   ArticleBySlugInput,
   ArticleListInput,
   LocaleOutput,
-  LocalizedArticleOutput,
+  ArticleOutput,
 } from "./types.js";
 import fetch from "node-fetch";
 
@@ -16,15 +16,15 @@ export class V0Client {
   private domain: string;
   private version: string;
 
-  constructor(opts: { auth: string; blogId: string }) {
+  constructor(opts: { auth: string; blogId: string; domain?: string }) {
     if (!opts.auth || !opts.blogId) {
-      throw new Error("Missing required options: auth, domain and blogId");
+      throw new Error("Missing required options: {auth} and {blogId}");
     }
 
     this.auth = opts.auth;
     this.blogId = opts.blogId;
     this.version = "v0";
-    this.domain = "https://api.vaporcms.com";
+    this.domain = opts.domain || "https://api.vaporcms.com";
   }
 
   private async request(
@@ -94,7 +94,7 @@ export class V0Client {
   };
 
   public readonly articles = {
-    get: (args: ArticleBySlugInput): Promise<LocalizedArticleOutput> =>
+    get: (args: ArticleBySlugInput): Promise<ArticleOutput> =>
       this.request(`articles/${args.slug}`, args),
 
     list: (args: ArticleListInput): Promise<ArticleListOutput> =>
