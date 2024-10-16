@@ -9,7 +9,6 @@
     "skipLibCheck": true,
     "declaration": true,
     "noEmit": false,
-    "moduleResolution": "NodeNext",
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true
   },

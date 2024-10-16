@@ -8,11 +8,11 @@ A JavaScript/TypeScript SDK to interact with the VaporCMS API. This SDK provides
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)
+  - [Articles](#articles)
   - [Blog](#blog)
   - [Locales](#locales)
   - [Authors](#authors)
   - [Categories](#categories)
-  - [Articles](#articles)
   - [Error Handling](#error-handling)
   - [License](#license)
 
@@ -41,6 +41,51 @@ const client = new V0Client({
   auth: "your-api-token",
   blogId: "your-blog-id",
 });
+```
+
+## Articles
+
+**Get article by slug.**
+You can retrieve a localized article by its `slug`. Optionally, you can also provide a `localeCode` to fetch the content in a specific locale. If no `localeCode` is provided, the default locale will be used.
+
+```typescript
+const articleResponse = await client.articles.get({
+  slug: "example-article",
+  localeCode: "en", //Optional
+});
+if (articleResponse.ok) {
+  console.log("Localized Article:", articleResponse.data);
+} else {
+  console.error("Error fetching article:", articleResponse.error);
+}
+```
+
+**List articles**
+To retrieve a list of articles, you can pass optional pagination options (page and pageSize) along with filtering options like categoryIds and authorIds.
+
+```typescript
+const articlesResponse = await client.articles.list({ page: 1, pageSize: 10 });
+if (articlesResponse.ok) {
+  console.log("Articles:", articlesResponse.data);
+} else {
+  console.error("Error fetching articles:", articlesResponse.error);
+}
+```
+
+You can also filter the list by categories or authors:
+
+```typescript
+const articlesResponse = await client.articles.list({
+  page: 1,
+  pageSize: 10,
+  categoryIds: ["category-1-id"],
+  authorIds: ["author-1-id"],
+});
+if (articlesResponse.ok) {
+  console.log("Filtered Articles:", articlesResponse.data);
+} else {
+  console.error("Error fetching filtered articles:", articlesResponse.error);
+}
 ```
 
 ## Blog
@@ -92,30 +137,6 @@ if (categoriesResponse.ok) {
   console.log("Categories:", categoriesResponse.data);
 } else {
   console.error("Error fetching categories:", categoriesResponse.error);
-}
-```
-
-## Articles
-
-Get an article by slug
-
-```typescript
-const articleResponse = await client.articles.get({ slug: "example-article" });
-if (articleResponse.ok) {
-  console.log("Article:", articleResponse.data);
-} else {
-  console.error("Error fetching article:", articleResponse.error);
-}
-```
-
-List articles
-
-```typescript
-const articlesResponse = await client.articles.list({ page: 1, pageSize: 10 });
-if (articlesResponse.ok) {
-  console.log("Articles:", articlesResponse.data);
-} else {
-  console.error("Error fetching articles:", articlesResponse.error);
 }
 ```
 
