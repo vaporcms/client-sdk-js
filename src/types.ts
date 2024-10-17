@@ -26,11 +26,11 @@ export type Media = {
   updatedAt: string;
 };
 
-export type TabelOfContents = {
+export type TableOfContents = {
   id: string;
   text: string;
   level: number;
-  subHeading: TabelOfContents[];
+  subHeadings: TableOfContents[];
 };
 
 export type Content = {
@@ -59,7 +59,7 @@ export type ArticleList = Array<{
       publishedAt: string | null;
       cover: Media | null;
       content: Content;
-      tableOfContents?: TabelOfContents[];
+      tableOfContents?: TableOfContents[];
       seo: Seo;
       authors: Array<{
         id: string;
@@ -86,7 +86,7 @@ export type Article = {
   status: "Draft" | "Published";
   publishedAt: string | null;
   content: Content;
-  tableOfContents: TabelOfContents[];
+  tableOfContents: TableOfContents[];
   cover: Media | null;
   seo: Seo;
   categories: Array<{
