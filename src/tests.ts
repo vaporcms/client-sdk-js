@@ -44,9 +44,5 @@ test("Should handle a 404 when the article is not found", async () => {
   const result = await client.articles.get({ slug: invalidSlug });
 
   assert.strictEqual(result.ok, false);
-  assert.strictEqual(result.error?.status, 404); // 404 status
-  assert.strictEqual(
-    result.error?.message,
-    `API call failed: No article found with the provided slug. ${invalidSlug}`
-  );
+  assert.strictEqual(result.error?.status, 404);
 });

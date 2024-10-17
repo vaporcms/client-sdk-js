@@ -83,7 +83,21 @@ export class V0Client {
 
       const data = await response.json();
       return { ok: true, data: data };
-    } catch (error) {
+    } catch (error: unknown) {
+      if (
+        error instanceof Error &&
+        (error.name === "FetchError" ||
+          error.message.includes("Failed to fetch"))
+      ) {
+        return {
+          ok: false,
+          error: {
+            message: `Network error: Could not connect to the server at ${url}`,
+            status: 503,
+          },
+        };
+      }
+
       if (error instanceof ApiError) {
         return {
           ok: false,

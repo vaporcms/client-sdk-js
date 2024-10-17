@@ -40,6 +40,12 @@ export type Content = {
   html: string;
 };
 
+export type Seo = {
+  title: string;
+  description: string;
+  image: Media | null;
+};
+
 export type ArticleList = Array<{
   id: string;
   status: "Draft" | "Published";
@@ -54,11 +60,7 @@ export type ArticleList = Array<{
       cover: Media | null;
       content: Content;
       tableOfContents?: TabelOfContents[];
-      seo: {
-        title: string;
-        description: string;
-        image: Media | null;
-      };
+      seo: Seo;
       authors: Array<{
         id: string;
         name: string;
@@ -86,11 +88,7 @@ export type Article = {
   content: Content;
   tableOfContents: TabelOfContents[];
   cover: Media | null;
-  seo: {
-    title: string;
-    description: string;
-    image: Media | null;
-  };
+  seo: Seo;
   categories: Array<{
     id: string;
     name: string;

@@ -15,7 +15,7 @@
     "release:minor": "pnpm version minor && git push origin main --follow-tags",
     "release:major": "pnpm version major && git push origin main --follow-tags",
     "build": "tsc",
-    "test": "pnpm build && node --env-file=.env --test ./dist/test.js"
+    "test": "pnpm build && node --env-file=.env --test ./dist/tests.js"
   },
   "publishConfig": {
     "access": "public"
