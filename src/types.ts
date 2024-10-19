@@ -110,7 +110,7 @@ export type Article = {
   createdAt: string;
   updatedAt: string;
   alternates: {
-    code: string;
+    localeCode: string;
     slug: string;
   }[];
 };
