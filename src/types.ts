@@ -109,6 +109,10 @@ export type Article = {
   locale: string;
   createdAt: string;
   updatedAt: string;
+  alternates: {
+    code: string;
+    slug: string;
+  }[];
 };
 
 export type Author = {
