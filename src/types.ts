@@ -34,9 +34,6 @@ export type TableOfContents = {
 };
 
 export type Content = {
-  title: string;
-  slug: string;
-  excerpt: string;
   html: string;
 };
 
@@ -58,6 +55,9 @@ export type ArticleList = Array<{
       status: "Draft" | "Published";
       publishedAt: string | null;
       cover: Media | null;
+      title: string;
+      slug: string;
+      excerpt: string;
       content: Content;
       tableOfContents?: TableOfContents[];
       seo: Seo;
@@ -85,6 +85,9 @@ export type Article = {
   id: string;
   status: "Draft" | "Published";
   publishedAt: string | null;
+  title: string;
+  slug: string;
+  excerpt: string;
   content: Content;
   tableOfContents: TableOfContents[];
   cover: Media | null;
