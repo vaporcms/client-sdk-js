@@ -158,6 +158,7 @@ export type ArticleBySlugInput = {
 export type ArticleListInput = {
   page?: number;
   pageSize?: number;
+  localeCode?: string;
   categoryIds?: string[];
   authorIds?: string[];
 };
