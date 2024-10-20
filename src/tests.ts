@@ -26,17 +26,17 @@ test("Should retrieve an article by slug from VaporCMS API", async () => {
   });
 
   const [firstArticle] = data?.articles!;
-  const slugInput = firstArticle.localized.en.content.slug;
+  const slugInput = firstArticle.localized.en.slug;
   const articleBySlug = await client.articles.get({ slug: slugInput });
 
   assert.equal(articleBySlug.ok, true);
-  assert.equal(articleBySlug.data?.content.slug, slugInput);
+  assert.equal(articleBySlug.data?.slug, slugInput);
 });
 
 test("Should retrieve a list of articles from VaporCMS API", async () => {
   const result = await client.articles.list({ page: 1, pageSize: 10 });
   assert.strictEqual(result.ok, true);
-  assert.ok(Array.isArray(result.data.articles));
+  assert.ok(Array.isArray(result?.data?.articles));
 });
 
 test("Should handle a 404 when the article is not found", async () => {
