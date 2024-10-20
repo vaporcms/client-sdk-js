@@ -1,6 +1,6 @@
 {
   "name": "@vaporcms/client-sdk-js",
-  "version": "1.21.0",
+  "version": "1.22.0",
   "description": "A JavaScript/TypeScript SDK to interact with the VaporCMS API.",
   "private": false,
   "type": "module",
