@@ -7,6 +7,8 @@ import type {
   ArticleListInput,
   LocaleOutput,
   ArticleOutput,
+  ArticleMetadataListOutput,
+  ArticleMetadataListInput,
 } from "./types.js";
 import fetch from "node-fetch";
 
@@ -142,5 +144,10 @@ export class V0Client {
 
     list: (args: ArticleListInput): Promise<ArticleListOutput> =>
       this.request("articles", args),
+
+    metadataList: (
+      args: ArticleMetadataListInput
+    ): Promise<ArticleMetadataListOutput> =>
+      this.request("articles/metadata", args),
   };
 }

@@ -81,6 +81,43 @@ export type ArticleList = Array<{
   >;
 }>;
 
+export type ArticleMetadataList = Array<{
+  id: string;
+  status: "Draft" | "Published";
+  createdAt: string;
+  updatedAt: string;
+  localized: Record<
+    string,
+    {
+      id: string;
+      status: "Draft" | "Published";
+      publishedAt: string | null;
+      cover: Media | null;
+      title: string;
+      slug: string;
+      excerpt: string;
+      tableOfContents?: TableOfContents[];
+      seo: Seo;
+      authors: Array<{
+        id: string;
+        name: string;
+        slug: string;
+        profile: string | null;
+        createdAt: string;
+        updatedAt: string;
+      }>;
+      categories: Array<{
+        id: string;
+        name: string;
+        slug: string;
+        description: string;
+        createdAt: string;
+        updatedAt: string;
+      }>;
+    }
+  >;
+}>;
+
 export type Article = {
   id: string;
   status: "Draft" | "Published";
@@ -166,6 +203,20 @@ export type ArticleListInput = {
   authorIds?: string[];
 };
 
+export type ArticleMetadataListInput = {
+  page?: number;
+  pageSize?: number;
+  localeCode?: string;
+  categoryIds?: string[];
+  authorIds?: string[];
+};
+
+export type Pagination = {
+  page: number;
+  pageSize: number;
+  totalPages: number;
+};
+
 export type BlogOutput = ApiResult<Blog>;
 export type LocaleOutput = ApiResult<Locale[]>;
 export type AuthorListOutput = ApiResult<Author[]>;
@@ -174,9 +225,11 @@ export type ArticleOutput = ApiResult<Article>;
 export type ArticleListOutput = ApiResult<{
   articles: ArticleList;
   totalCount: number;
-  pagination: {
-    page: number;
-    pageSize: number;
-    totalPages: number;
-  };
+  pagination: Pagination;
+}>;
+
+export type ArticleMetadataListOutput = ApiResult<{
+  articles: ArticleMetadataList;
+  totalCount: number;
+  pagination: Pagination;
 }>;
